@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Reset CSS -->
+    <link rel="stylesheet" href="assets/css/reset.css">
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Bootstrap -->
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <title>Battle Game</title>
+</head>
+<body>
+    <h1 style="text-align:center;">Choose Character</h1>
+    <div class="playerCont">
+        <div class="playerTile unassigned" id="pOne">
+            <span id="oneName"></span><br>
+            <div id="oneImg"></div>
+            <span id="oneHp"></span>
+        </div>
+        <div class="playerTile unassigned" id="pTwo">
+            <span id="twoName"></span><br>
+            <div id="twoImg"></div>
+            <span id="twoHp"></span>    
+        </div>
+        <div class="playerTile unassigned" id="pThree">            
+            <span id="threeName"></span><br>
+            <div id="threeImg"></div>
+            <span id="threeHp"></span>
+        </div>
+        <div class="playerTile unassigned" id="pFour">
+            <span id="fourName"></span><br>
+            <div id="fourImg"></div>
+            <span id="fourHp"></span>    
+        </div>
+    </div>
+    <div style="clear:both;">&nbsp;</div>
+
+    <h1 style="text-align:center;">Choose Enemy</h1>
+    <div class="playerCont" id="enemiesCont"></div>
+    <div style="clear:both;">&nbsp;</div>
+
+
+    <h1 style="text-align:center;">Defender</h1>
+    <div class="playerCont" id="defCont"></div>
+    <div style="clear:both;">&nbsp;</div>
+
+    <div class="attack">
+        <p align="center">Attack</p>
+        <img src="http://www.placecage.com/100/100">
+    </div>
+
+    <div id="message">
+
+    </div>
+
+    
+
+    
+    
+    <script type="text/javascript" src="assets/javascript/game.js"></script>
+
+</body>
+</html>

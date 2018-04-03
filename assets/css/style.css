@@ -1,0 +1,21 @@
+@font-face {
+    font-family: Gameplay;
+    src: url(../gameplay.ttf);
+}
+
+.playerTile {
+    width: 150px;
+    height: 190px;
+    float: left;
+    font-family: Gameplay;
+    text-align: center;
+}
+
+.playerCont {
+    margin: 0 auto;
+    width: 600px;
+}
+
+.hidden {
+    display: none;
+}

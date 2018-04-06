@@ -71,9 +71,13 @@ function reset() {
     threeHp.innerHTML = pThree.hp;
     var fourHp = document.getElementById("fourHp");
     fourHp.innerHTML = pFour.hp;
-
-    
 };
+
+// Audio functions
+var hit1 = new Audio('assets/audio/hit1.wav');
+var hit2 = new Audio('assets/audio/hit2.wav');
+var bgmusic = new Audio('assets/audio/bgmusic.mp3');
+bgmusic.play();
 
 // Initial reset
 reset();
@@ -122,6 +126,7 @@ $(main).on("click", ".playerTile", function() {
 $(main).on("click", ".attack", function() {
     // Find div.hero
     hero = $(".hero");
+
     // Make player = character variable
     player = eval(hero.attr('id'));
 
@@ -134,7 +139,6 @@ $(main).on("click", ".attack", function() {
     computer.hp -= player.ap;
     $("#healthTwo").html(computer.hp);
 
-
     // Show player damage in bubble
     $("#damageRight").html('<p>' + player.ap + '</p>').css({"display":"block"});
     var Rdamage = setInterval(hideRdamage, 1000);
@@ -145,6 +149,9 @@ $(main).on("click", ".attack", function() {
 
     // Show player damage in message
     message.innerHTML = "You hit " + computer.name + " for " + player.ap + " damage<br>";
+
+    // Play hit1 audio
+    hit1.play();
 
     // Computer counterattack
     player.hp -= computer.cap;
@@ -159,6 +166,7 @@ $(main).on("click", ".attack", function() {
             clearInterval(Ldamage);
         }
         clearInterval(delay);
+        hit2.play();
     }
     $("#healthOne").html(player.hp);
 

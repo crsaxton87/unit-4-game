@@ -4,8 +4,9 @@ var main = $("body"),
     defender = "",
     message = document.getElementById("message"),
     unassigned = true,
-    reloadBtn = document.getElementById("reload");
-    totalEnemies = 3
+    reloadBtn = document.getElementById("reload"),
+    totalEnemies = 3,
+    win = false;
 
 
 
@@ -81,19 +82,39 @@ reset();
 $(main).on("click", ".playerTile", function() {
     if (unassigned === true) {
 
-        // Assign hero class to clicked, remove unassigned class
-        $(this).removeClass("unassigned").addClass("hero");
+        // Assign hero class to clicked, remove unassigned and playerTile class
+        $(this).removeClass("unassigned playerTile").addClass("hero").appendTo($(".herobox"));
 
         // Assign enemy class to others, remove unassigned class, move to enemies box
         var enemies = $(".playerTile").not($(this));
         $(enemies).removeClass("unassigned").addClass("enemy").appendTo($("#enemiesCont"));
+
+        // Put player health in GUI
+        player = eval($(".hero").attr('id'));
+        $("#healthOne").html(player.hp);
+
+        // Hide character selector / show enemy selector
+        $(".choose-char").css({"display":"none"});
+        $(".choose-enemy").css({"display":"block"});
 
         // Prevent recursion
         unassigned = false;
     }
     else if (unassigned === false) {
         // Assign defender class, remove enemy class, move to defender box
-        $(this).removeClass("enemy").addClass("defender").appendTo($("#defCont"));
+        $(this).removeClass("enemy playerTile").addClass("defender").appendTo($(".defbox"));
+
+        // Flip defender image
+        $(".defender").find(".pImg").find("img").css({"-webkit-transform":"scaleX(-1)","transform":"scaleX(-1)"});
+
+        // Put defender health in GUI
+        defender = eval($(".defender").attr('id'));
+        $("#healthTwo").html(defender.hp);
+
+        // Hide enemy selector / show defender
+        $(".choose-enemy").css({"display":"none"});
+        $(".choose-def").css({"display":"block"});
+        
     }
 });
 
@@ -111,10 +132,38 @@ $(main).on("click", ".attack", function() {
 
     // Player attack
     computer.hp -= player.ap;
+    $("#healthTwo").html(computer.hp);
+
+
+    // Show player damage in bubble
+    $("#damageRight").html('<p>' + player.ap + '</p>').css({"display":"block"});
+    var Rdamage = setInterval(hideRdamage, 1000);
+    function hideRdamage () {
+        $("#damageRight").css({"display":"none"});
+        clearInterval(Rdamage);
+    }
+
+    // Show player damage in message
     message.innerHTML = "You hit " + computer.name + " for " + player.ap + " damage<br>";
 
     // Computer counterattack
     player.hp -= computer.cap;
+
+    // Show defender damage in bubble
+    var delay = setInterval(delayLdamage, 750);
+    function delayLdamage () {
+        $("#damageLeft").html('<p>' + computer.cap + '</p>').css({"display":"block"});
+        var Ldamage = setInterval(hideLdamage, 1000);
+        function hideLdamage () {
+            $("#damageLeft").css({"display":"none"});
+            clearInterval(Ldamage);
+        }
+        clearInterval(delay);
+    }
+    $("#healthOne").html(player.hp);
+
+
+    // Show defender damage in message
     message.insertAdjacentHTML('beforeend', computer.name + " counter attacks for " + computer.cap + " damage<br>");
 
     // Player attack build up
@@ -129,17 +178,27 @@ $(main).on("click", ".attack", function() {
         message.insertAdjacentHTML(
             'beforeend', 
             '<div id="reload"><p align="center">Reload</p><img src="http://www.placecage.com/100/100"></div>');
-    };
+    }
 
     if (computer.hp <= 0) {
         message.innerHTML = "You have defeated " + computer.name + ". You can choose to fight another enemy.";
         defender.addClass("hidden");
         defender.removeClass("defender");
         totalEnemies -= 1;
-    };
+        var wait = setInterval(showEnemies, 2000);
+    }
 
     if (totalEnemies <= 0) {
         message.innerHTML = "You win!";
+        win = true;
+        $(".winText").css({"display":"block"});
+    }
+
+    function showEnemies () {
+        if (win == false) {
+            $(".choose-enemy").css({"display":"block"});
+            clearInterval(wait);
+        }
     }
 
 });

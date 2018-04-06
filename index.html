@@ -27,48 +27,85 @@
     <title>Battle Game</title>
 </head>
 <body>
-    <h1 style="text-align:center;">Choose Character</h1>
-    <div class="playerCont">
-        <div class="playerTile unassigned" id="pOne">
-            <span id="oneName"></span><br>
-            <div id="oneImg"></div>
-            <span id="oneHp"></span>
+<!-- Background -->
+<img src="assets/images/bg/bg1.png" id="bg">
+
+<!-- Main Container -->
+<div class="main-container">
+    <div class="choose-char">
+        <h1>Choose Character</h1>
+        <div class="playerCont">
+            <div class="playerTile unassigned" id="pOne">
+                <span id="oneName"></span><br>
+                <div id="oneImg" class="pImg"></div>
+                <span id="oneHp"></span>
+            </div>
+            <div class="playerTile unassigned" id="pTwo">
+                <span id="twoName"></span><br>
+                <div id="twoImg" class="pImg"></div>
+                <span id="twoHp"></span>    
+            </div>
+            <div class="playerTile unassigned" id="pThree">            
+                <span id="threeName"></span><br>
+                <div id="threeImg" class="pImg"></div>
+                <span id="threeHp"></span>
+            </div>
+            <div class="playerTile unassigned" id="pFour">
+                <span id="fourName"></span><br>
+                <div id="fourImg" class="pImg"></div>
+                <span id="fourHp"></span>    
+            </div>
         </div>
-        <div class="playerTile unassigned" id="pTwo">
-            <span id="twoName"></span><br>
-            <div id="twoImg"></div>
-            <span id="twoHp"></span>    
-        </div>
-        <div class="playerTile unassigned" id="pThree">            
-            <span id="threeName"></span><br>
-            <div id="threeImg"></div>
-            <span id="threeHp"></span>
-        </div>
-        <div class="playerTile unassigned" id="pFour">
-            <span id="fourName"></span><br>
-            <div id="fourImg"></div>
-            <span id="fourHp"></span>    
-        </div>
+        <div style="clear:both;">&nbsp;</div>
     </div>
-    <div style="clear:both;">&nbsp;</div>
 
-    <h1 style="text-align:center;">Choose Enemy</h1>
-    <div class="playerCont" id="enemiesCont"></div>
-    <div style="clear:both;">&nbsp;</div>
+    <div class="choose-enemy">
+        <h1 style="text-align:center;">Choose Enemy</h1>
+        <div class="playerCont" id="enemiesCont"></div>
+        <div style="clear:both;">&nbsp;</div>
+    </div>
 
+    <!-- <div class="choose-def">
+        <h1 style="text-align:center;">Defender</h1>
+        <div class="playerCont" id="defCont"></div>
+        <div style="clear:both;">&nbsp;</div>
+    </div> -->
 
-    <h1 style="text-align:center;">Defender</h1>
-    <div class="playerCont" id="defCont"></div>
-    <div style="clear:both;">&nbsp;</div>
+    <div class="herobox"></div>
 
+    <div class="defbox"></div>
+
+    <div class="damage" id="damageLeft"><p>160</p></div>
+
+    <div class="damage" id="damageRight"><p>160</p></div>
+    
     <div class="attack">
-        <p align="center">Attack</p>
-        <img src="http://www.placecage.com/100/100">
+        <p>Attack</p>
+        <img src="assets/images/button1.png">
+    </div>
+
+    <div class="health1">
+        <div class="healthbox">
+            <p id="healthOne"></p>
+        </div>
+        <img src="assets/images/health1.png">
+    </div>
+
+    <div class="health2">
+        <div class="healthbox">
+            <p id="healthTwo"></p>
+        </div>
+        <img src="assets/images/health2.png">
+    </div>
+
+    <div class="winText">
+        <p>You win!</p>
     </div>
 
     <div id="message">
 
     </div>
+</div>
 
     
 

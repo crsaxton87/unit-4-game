@@ -2,6 +2,7 @@
 var main = $("body"),
     hero = "",
     defender = "",
+    baseAP = 0,
     message = document.getElementById("message"),
     unassigned = true,
     reloadBtn = document.getElementById("reload"),
@@ -22,7 +23,7 @@ var pTwo = {
     name: "Sasha Velour",
     hp: 100,
     ap: 6,
-    cap: 35
+    cap: 20
 };
 
 var pThree = {
@@ -46,10 +47,9 @@ var bg = [
     "assets/images/bg/bg3.png"
 ];
 
-
+// Set random background
 var newBg = bg[Math.floor(Math.random() * bg.length)];
 $('#bg').attr('src', newBg);
-console.log(newBg);
 
 $(document).ready(function () {
     // Set Image
@@ -108,6 +108,9 @@ $(main).on("click", ".playerTile", function() {
         // Put player health in GUI
         player = eval($(".hero").attr('id'));
         $("#healthOne").html(player.hp);
+
+        // Set player base AP
+        baseAP = player.ap;
 
         // Hide character selector / show enemy selector
         $(".choose-char").css({"display":"none"});
@@ -187,8 +190,7 @@ $(main).on("click", ".attack", function() {
     message.insertAdjacentHTML('beforeend', computer.name + " counter attacks for " + computer.cap + " damage<br>");
 
     // Player attack build up
-    player.ap += player.ap;
-    console.log(player.ap);
+    player.ap += baseAP;
 
     // Visual stat reset
     reset();
@@ -200,7 +202,7 @@ $(main).on("click", ".attack", function() {
             '<div id="reload"><p align="center">Reload</p><img src="http://www.placecage.com/100/100"></div>');
         
         var wait = setInterval(showLose, 2000);
-        message.innerHTML = "You win!";
+        message.innerHTML = "Game Over";
         win = true;
     }
 

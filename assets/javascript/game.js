@@ -16,28 +16,40 @@ var pOne = {
     hp: 120,
     ap: 8,
     cap: 25
-}
+};
 
 var pTwo = {
     name: "Sasha Velour",
     hp: 100,
     ap: 6,
-    cap: 5
-}
+    cap: 35
+};
 
 var pThree = {
     name: "934-TXS",
     hp: 150,
     ap: 9,
     cap: 15
-}
+};
 
 var pFour = {
     name: "B.M. Fahrtz",
     hp: 180,
     ap: 5,
     cap: 4
-}
+};
+
+// Backgrounds
+var bg = [
+    "assets/images/bg/bg1.png",
+    "assets/images/bg/bg2.png",
+    "assets/images/bg/bg3.png"
+];
+
+
+var newBg = bg[Math.floor(Math.random() * bg.length)];
+$('#bg').attr('src', newBg);
+console.log(newBg);
 
 $(document).ready(function () {
     // Set Image
@@ -186,6 +198,15 @@ $(main).on("click", ".attack", function() {
         message.insertAdjacentHTML(
             'beforeend', 
             '<div id="reload"><p align="center">Reload</p><img src="http://www.placecage.com/100/100"></div>');
+        
+        var wait = setInterval(showLose, 2000);
+        message.innerHTML = "You win!";
+        win = true;
+    }
+
+    function showLose () {
+        $(".loseText").css({"display":"block"});
+        clearInterval(wait);
     }
 
     if (computer.hp <= 0) {
@@ -196,12 +217,6 @@ $(main).on("click", ".attack", function() {
         var wait = setInterval(showEnemies, 2000);
     }
 
-    if (totalEnemies <= 0) {
-        message.innerHTML = "You win!";
-        win = true;
-        $(".winText").css({"display":"block"});
-    }
-
     function showEnemies () {
         if (win == false) {
             $(".choose-enemy").css({"display":"block"});
@@ -209,9 +224,20 @@ $(main).on("click", ".attack", function() {
         }
     }
 
+    if (totalEnemies <= 0) {
+        var wait = setInterval(showWin, 2000);
+        message.innerHTML = "You win!";
+        win = true;
+    }
+
+    function showWin () {
+        $(".winText").css({"display":"block"});
+        clearInterval(wait);
+    }
+
 });
 
 // Reload
-$(main).on("click", "#reload", function() {
-    location.reload();
-})
+//$(main).on("click", "#reload", function() {
+//    location.reload();
+//})
